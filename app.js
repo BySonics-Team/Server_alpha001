@@ -18,19 +18,20 @@ app.use(cors());
 //middleware body parser
 app.use(bodyParser.json());
 
-
 //import routes
 const dataPPGRoute = require ('./routes/dataPPG');
 const dataAcceRoute = require ('./routes/dataAccelerometer')
 const dataEKGRoute = require ('./routes/dataEKG')
 const dataEMGRoute = require ('./routes/dataEMG')
 const dataSuhuRoute = require ('./routes/dataSuhu')
+const dataAllSensorRoute = require ('./routes/dataAllSensor')
 //MIDDLEWARE dari URL HOME/post ke postsRoutes
 app.use('/dataPPG', dataPPGRoute);
 app.use('/dataAccelerometer', dataAcceRoute);
 app.use('/dataEKG', dataEKGRoute);
 app.use('/dataEMG', dataEMGRoute);
 app.use('/dataSuhu', dataSuhuRoute);
+app.use('/dataAllSensor', dataAllSensorRoute);
 //ROUTE: neghubungin ke post dan get dkk
 app.get('/', (req,res) => {
 	res.send('BySonics Home Base Server');

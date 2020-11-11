@@ -16,7 +16,6 @@ require('dotenv/config');
 //cors: public access
 app.use(cors());
 //middleware body parser
-//middleware body parser
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb', extended: true}));
@@ -29,6 +28,7 @@ const dataEKGRoute = require ('./routes/dataEKG')
 const dataEMGRoute = require ('./routes/dataEMG')
 const dataSuhuRoute = require ('./routes/dataSuhu')
 const dataCameraRoute = require ('./routes/dataImage')
+const recordingStatus = require('./routes/RecordingStatus')
 //MIDDLEWARE dari URL HOME/post ke postsRoutes
 app.use('/dataPPG', dataPPGRoute);
 app.use('/dataAccelerometer', dataAcceRoute);
@@ -36,7 +36,7 @@ app.use('/dataEKG', dataEKGRoute);
 app.use('/dataEMG', dataEMGRoute);
 app.use('/dataSuhu', dataSuhuRoute);
 app.use('/dataImage', dataCameraRoute);
-
+app.use('/recording', recordingStatus);
 //ROUTE: neghubungin ke post dan get dkk
 app.get('/', (req,res) => {
 	res.send('BySonics Home Base Server');

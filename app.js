@@ -28,6 +28,7 @@ const dataEKGRoute = require ('./routes/dataEKG')
 const dataEMGRoute = require ('./routes/dataEMG')
 const dataSuhuRoute = require ('./routes/dataSuhu')
 const dataCameraRoute = require ('./routes/dataImage')
+const dataAllRoute = require ('./routes/dataAllSensor')
 const recordingStatus = require('./routes/RecordingStatus')
 //MIDDLEWARE dari URL HOME/post ke postsRoutes
 app.use('/dataPPG', dataPPGRoute);
@@ -36,6 +37,7 @@ app.use('/dataEKG', dataEKGRoute);
 app.use('/dataEMG', dataEMGRoute);
 app.use('/dataSuhu', dataSuhuRoute);
 app.use('/dataImage', dataCameraRoute);
+app.use('/dataAllSensor', dataAllRoute);
 app.use('/recording', recordingStatus);
 //ROUTE: neghubungin ke post dan get dkk
 app.get('/', (req,res) => {

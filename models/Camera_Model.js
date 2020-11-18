@@ -15,7 +15,7 @@ const dataSchema = mongoose.Schema({
     },
     //id_pasien, bukan nama, kemungkinana ambil dari _id mongoose
     dataImage : { 
-        type : [[Number]]
+        type : String
     }
 }, {timestamps: true})
 

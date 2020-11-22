@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require ('mongoose');
 //Deklarasi Model
-const dataAllSensor = require('../models/AllSensor_Model');
+const dataAllSensor = require('../models/DataRekonstruksi/AllSensor_Model');
 
 //DATA Accelerometer  
     //get all
@@ -63,23 +63,35 @@ const dataAllSensor = require('../models/AllSensor_Model');
                     id_rompi : req.body.id_rompi,
                     id_sensor : req.body.id_sensor, 
                     id_pasien : req.body.id_pasien,
-                    dataAccelerometer_X : req.body.dataAccelerometer_X,
-                    dataAccelerometer_Y : req.body.dataAccelerometer_Y,
-                    dataAccelerometer_Z : req.body.dataAccelerometer_Z,
+                    dataAccelerometer_XReal : req.body.dataAccelerometer_XReal,
+                    dataAccelerometer_YReal : req.body.dataAccelerometer_YReal,
+                    dataAccelerometer_ZReal : req.body.dataAccelerometer_ZReal,
                     //suhu
-                    dataSuhu : req.body.dataSuhu,
+                    dataSuhuReal : req.body.dataSuhuReal,
                     //ekg
-                    dataEKG : req.body.dataEKG, 
+                    dataEKGReal : req.body.dataEKGReal, 
                     //ppg
-                    dataPPG : req.body.dataPPG, 
+                    dataPPGReal : req.body.dataPPGReal, 
                     //emg
-                    dataEMG : req.body.dataEMG, 
+                    dataEMGReal : req.body.dataEMGReal,
+                    //
+                    dataAccelerometer_XImag : req.body.dataAccelerometer_XImag,
+                    dataAccelerometer_YImag : req.body.dataAccelerometer_YImag,
+                    dataAccelerometer_ZImag : req.body.dataAccelerometer_ZImag,
+                    //suhu
+                    dataSuhuImag : req.body.dataSuhuImag,
+                    //ekg
+                    dataEKGImag : req.body.dataEKGImag, 
+                    //ppg
+                    dataPPGImag : req.body.dataPPGImag, 
+                    //emg
+                    dataEMGImag : req.body.dataEMGReal
         });
         // Save and validate
         newData.save()
         .then(newData=> {
             return res.status(200).json({
-            message :'Data All Sensor Berhasil Disimpan'
+            message :'Rekonstruksi All Sensor Berhasil Disimpan'
         })
     })
     .catch (err => {

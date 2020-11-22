@@ -14,11 +14,12 @@ const dataSchema = mongoose.Schema({
         type : String
     },
     //id_pasien, bukan nama, kemungkinana ambil dari _id mongoose
-    dataSuhu : { 
+    dataPPG : { 
         type : [Number]
     }
 }, {timestamps: true})
 
 
+connData = mongoose.connection.useDb('DataSensor')
 
-module.exports = mongoose.model('DataSuhu', dataSchema);
+module.exports = connData.model('DataPPG', dataSchema);

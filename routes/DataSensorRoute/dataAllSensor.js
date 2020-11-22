@@ -2,27 +2,27 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require ('mongoose');
 //Deklarasi Model
-const dataPPG = require('../models/PPG_Model');
+const dataAllSensor = require('../models/DataSensor/AllSensor_Model');
 
-//DATA PPG  
+//DATA Accelerometer  
     //get all
     router.get('/All', async (req,res) => {
         try{
-            const dataAll = await dataPPG.find(); //ngasih semua data yang udah kesimpan
+            const dataAll = await dataAllSensor.find(); //ngasih semua data yang udah kesimpan
             res.json(dataAll);
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET ALL PPG'});
+            res.json({message: 'err GET ALL Sensor'});
         }
     });
     //get Last
     router.get('/Lastest', async (req,res) => {
         try{
-            const dataPPG_Last = await dataPPG.find().limit(1).sort({$natural:-1});
-            res.json(dataPPG_Last); 
+            const dataAllSensor_Last = await dataAllSensor.find().limit(1).sort({$natural:-1});
+            res.json(dataAllSensor_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET LAST by PPG ID'});
+            res.json({message: 'err GET LAST by All ID'});
         }
     });
 
@@ -33,11 +33,11 @@ const dataPPG = require('../models/PPG_Model');
                 id_pasien: req.body.id_pasien
             }
             console.log(req.body.id_pasien);
-            const dataPPG_Last = await dataPPG.find(query).limit(1).sort({$natural:-1});
-            res.json(dataPPG_Last); 
+            const dataAllSensor_Last = await dataAllSensor.find(query).limit(1).sort({$natural:-1});
+            res.json(dataAllSensor_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET LAST by PPG ID'});
+            res.json({message: 'err GET LAST by All Sensor ID'});
         }
     });
 
@@ -48,27 +48,38 @@ const dataPPG = require('../models/PPG_Model');
                 id_pasien: req.body.id_pasien
             }
             console.log(req.body.id_pasien);
-            const dataPPG_Last = await dataPPG.find(query);
-            res.json(dataPPG_Last); 
+            const dataAllSensor_All = await dataAllSensor.find(query);
+            console.log(dataAllSensor_All);
+            res.json(dataAllSensor_All);   
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET ALL PPG by ID'});
+            res.json({message: 'err GET ALL Sensor by ID'});
         }
     });
 
     router.post('/save', async (req,res) => { //pake async kalau save CARA 2
         console.log(req.body) //cek Body
-        const newData = new dataPPG({ //masukin info dari body ke salam model database Post
+        const newData = new dataAllSensor({ //masukin info dari body ke salam model database Post
                     id_rompi : req.body.id_rompi,
                     id_sensor : req.body.id_sensor, 
                     id_pasien : req.body.id_pasien,
-                    dataPPG : req.body.dataPPG
+                    dataAccelerometer_X : req.body.dataAccelerometer_X,
+                    dataAccelerometer_Y : req.body.dataAccelerometer_Y,
+                    dataAccelerometer_Z : req.body.dataAccelerometer_Z,
+                    //suhu
+                    dataSuhu : req.body.dataSuhu,
+                    //ekg
+                    dataEKG : req.body.dataEKG, 
+                    //ppg
+                    dataPPG : req.body.dataPPG, 
+                    //emg
+                    dataEMG : req.body.dataEMG, 
         });
         // Save and validate
         newData.save()
         .then(newData=> {
             return res.status(200).json({
-            message :'Data PPG Berhasil Disimpan'
+            message :'Data All Sensor Berhasil Disimpan'
         })
     })
     .catch (err => {

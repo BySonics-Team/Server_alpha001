@@ -14,11 +14,15 @@ const dataSchema = mongoose.Schema({
         type : String
     },
     //id_pasien, bukan nama, kemungkinana ambil dari _id mongoose
-    dataPPG : { 
+    //emg
+    dataEMGReal : { 
+        type : [Number]
+    },
+    dataEMGImag : { 
         type : [Number]
     }
 }, {timestamps: true})
 
+onnRekons = mongoose.connection.useDb('DataRekonstruksi')
 
-
-module.exports = mongoose.model('DataPPG', dataSchema);
+module.exports = connRekons.model('DataEMG', dataSchema);

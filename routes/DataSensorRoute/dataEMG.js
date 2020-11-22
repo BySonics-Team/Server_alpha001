@@ -2,27 +2,27 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require ('mongoose');
 //Deklarasi Model
-const dataSuhu = require('../models/Suhu_Model');
+const dataEMG = require('../models/DataSensor/EMG_Model');
 
-//DATA Suhu  
+//DATA EMG  
     //get all
     router.get('/All', async (req,res) => {
         try{
-            const dataAll = await dataSuhu.find(); //ngasih semua data yang udah kesimpan
+            const dataAll = await dataEMG.find(); //ngasih semua data yang udah kesimpan
             res.json(dataAll);
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET ALL Suhu'});
+            res.json({message: 'err GET ALL EMG'});
         }
     });
     //get Last
     router.get('/Lastest', async (req,res) => {
         try{
-            const dataSuhu_Last = await dataSuhu.find().limit(1).sort({$natural:-1});
-            res.json(dataSuhu_Last); 
+            const dataEMG_Last = await dataEMG.find().limit(1).sort({$natural:-1});
+            res.json(dataEMG_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET LAST by Suhu ID'});
+            res.json({message: 'err GET LAST by EMG ID'});
         }
     });
 
@@ -33,11 +33,11 @@ const dataSuhu = require('../models/Suhu_Model');
                 id_pasien: req.body.id_pasien
             }
             console.log(req.body.id_pasien);
-            const dataSuhu_Last = await dataSuhu.find(query).limit(1).sort({$natural:-1});
-            res.json(dataSuhu_Last); 
+            const dataEMG_Last = await dataEMG.find(query).limit(1).sort({$natural:-1});
+            res.json(dataEMG_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET LAST by Suhu ID'});
+            res.json({message: 'err GET LAST by EMG ID'});
         }
     });
 
@@ -48,27 +48,27 @@ const dataSuhu = require('../models/Suhu_Model');
                 id_pasien: req.body.id_pasien
             }
             console.log(req.body.id_pasien);
-            const dataSuhu_Last = await dataSuhu.find(query);
-            res.json(dataSuhu_Last); 
+            const dataEMG_Last = await dataEMG.find(query);
+            res.json(dataEMG_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET ALL Suhu by ID'});
+            res.json({message: 'err GET ALL EMG by ID'});
         }
     });
 
     router.post('/save', async (req,res) => { //pake async kalau save CARA 2
         console.log(req.body) //cek Body
-        const newData = new dataSuhu({ //masukin info dari body ke salam model database Post
+        const newData = new dataEMG({ //masukin info dari body ke salam model database Post
                     id_rompi : req.body.id_rompi,
                     id_sensor : req.body.id_sensor, 
                     id_pasien : req.body.id_pasien,
-                    dataSuhu : req.body.dataSuhu
+                    dataEMG : req.body.dataEMG
         });
         // Save and validate
         newData.save()
         .then(newData=> {
             return res.status(200).json({
-            message :'Data Suhu Berhasil Disimpan'
+            message :'Data EMG Berhasil Disimpan'
         })
     })
     .catch (err => {

@@ -2,27 +2,27 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require ('mongoose');
 //Deklarasi Model
-const dataCamera = require('../models/Camera_Model');
+const dataPPG = require('../models/DataSensor/PPG_Model');
 
-//DATA Camera_Model  
+//DATA PPG  
     //get all
     router.get('/All', async (req,res) => {
         try{
-            const dataAll = await dataCamera.find(); //ngasih semua data yang udah kesimpan
+            const dataAll = await dataPPG.find(); //ngasih semua data yang udah kesimpan
             res.json(dataAll);
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET ALL Camera'});
+            res.json({message: 'err GET ALL PPG'});
         }
     });
     //get Last
     router.get('/Lastest', async (req,res) => {
         try{
-            const dataCamera_Last = await dataCamera.find().limit(1).sort({$natural:-1});
-            res.json(dataCamera_Last); 
+            const dataPPG_Last = await dataPPG.find().limit(1).sort({$natural:-1});
+            res.json(dataPPG_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET LAST by Camera ID'});
+            res.json({message: 'err GET LAST by PPG ID'});
         }
     });
 
@@ -33,11 +33,11 @@ const dataCamera = require('../models/Camera_Model');
                 id_pasien: req.body.id_pasien
             }
             console.log(req.body.id_pasien);
-            const dataCamera_Last = await dataCamera.find(query).limit(1).sort({$natural:-1});
-            res.json(dataCamera_Last);   
+            const dataPPG_Last = await dataPPG.find(query).limit(1).sort({$natural:-1});
+            res.json(dataPPG_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET LAST by Camera ID'});
+            res.json({message: 'err GET LAST by PPG ID'});
         }
     });
 
@@ -48,28 +48,27 @@ const dataCamera = require('../models/Camera_Model');
                 id_pasien: req.body.id_pasien
             }
             console.log(req.body.id_pasien);
-            const dataCamera_All = await dataCamera.find(query);
-            console.log(dataCamera_All);
-            res.json(dataCamera_All);   
+            const dataPPG_Last = await dataPPG.find(query);
+            res.json(dataPPG_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET ALL Camera by ID'});
+            res.json({message: 'err GET ALL PPG by ID'});
         }
     });
 
     router.post('/save', async (req,res) => { //pake async kalau save CARA 2
         console.log(req.body) //cek Body
-        const newData = new dataCamera({ //masukin info dari body ke salam model database Post
+        const newData = new dataPPG({ //masukin info dari body ke salam model database Post
                     id_rompi : req.body.id_rompi,
                     id_sensor : req.body.id_sensor, 
                     id_pasien : req.body.id_pasien,
-                    dataImage : req.body.dataImage
-        })
+                    dataPPG : req.body.dataPPG
+        });
         // Save and validate
         newData.save()
         .then(newData=> {
             return res.status(200).json({
-            message :'Data Camera Berhasil Disimpan'
+            message :'Data PPG Berhasil Disimpan'
         })
     })
     .catch (err => {

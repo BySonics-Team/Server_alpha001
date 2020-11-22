@@ -14,17 +14,26 @@ const dataSchema = mongoose.Schema({
         type : String
     },
     //id_pasien, bukan nama, kemungkinana ambil dari _id mongoose
-    dataAccelerometer_X : { 
+    dataAccelerometer_XReal : { 
         type : [Number]
     },
-    dataAccelerometer_Y : { 
+    dataAccelerometer_YReal : { 
         type : [Number]
     },
-    dataAccelerometer_Z : { 
+    dataAccelerometer_ZReal : { 
+        type : [Number]
+    },
+    dataAccelerometer_XImag : { 
+        type : [Number]
+    },
+    dataAccelerometer_YImag : { 
+        type : [Number]
+    },
+    dataAccelerometer_ZImag : { 
         type : [Number]
     }
 }, {timestamps: true})
 
+connRekons = mongoose.connection.useDb('DataRekonstruksi')
 
-
-module.exports = mongoose.model('DataAccelerometer', dataSchema);
+module.exports = connRekons.model('DataAccelerometer', dataSchema);

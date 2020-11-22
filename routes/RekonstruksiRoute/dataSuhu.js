@@ -2,27 +2,27 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require ('mongoose');
 //Deklarasi Model
-const dataAcce = require('../models/Accelerometer_Model');
+const dataSuhu = require('../models/DataRekonstruksi/Suhu_Model');
 
-//DATA Accelerometer  
+//DATA Suhu  
     //get all
     router.get('/All', async (req,res) => {
         try{
-            const dataAll = await dataAcce.find(); //ngasih semua data yang udah kesimpan
+            const dataAll = await dataSuhu.find(); //ngasih semua data yang udah kesimpan
             res.json(dataAll);
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET ALL Accelerometer'});
+            res.json({message: 'err GET ALL Suhu'});
         }
     });
     //get Last
     router.get('/Lastest', async (req,res) => {
         try{
-            const dataAcce_Last = await dataAcce.find().limit(1).sort({$natural:-1});
-            res.json(dataAcce_Last); 
+            const dataSuhu_Last = await dataSuhu.find().limit(1).sort({$natural:-1});
+            res.json(dataSuhu_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET LAST by Accelerometer ID'});
+            res.json({message: 'err GET LAST by Suhu ID'});
         }
     });
 
@@ -33,11 +33,11 @@ const dataAcce = require('../models/Accelerometer_Model');
                 id_pasien: req.body.id_pasien
             }
             console.log(req.body.id_pasien);
-            const dataAcce_Last = await dataAcce.find(query).limit(1).sort({$natural:-1});
-            res.json(dataAcce_Last);   
+            const dataSuhu_Last = await dataSuhu.find(query).limit(1).sort({$natural:-1});
+            res.json(dataSuhu_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET LAST by Accelerometer ID'});
+            res.json({message: 'err GET LAST by Suhu ID'});
         }
     });
 
@@ -48,30 +48,28 @@ const dataAcce = require('../models/Accelerometer_Model');
                 id_pasien: req.body.id_pasien
             }
             console.log(req.body.id_pasien);
-            const dataAcce_All = await dataAcce.find(query);
-            console.log(dataAcce_All);
-            res.json(dataAcce_All);   
+            const dataSuhu_Last = await dataSuhu.find(query);
+            res.json(dataSuhu_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET ALL Accelerometer by ID'});
+            res.json({message: 'err GET ALL Suhu by ID'});
         }
     });
 
     router.post('/save', async (req,res) => { //pake async kalau save CARA 2
         console.log(req.body) //cek Body
-        const newData = new dataAcce({ //masukin info dari body ke salam model database Post
+        const newData = new dataSuhu({ //masukin info dari body ke salam model database Post
                     id_rompi : req.body.id_rompi,
                     id_sensor : req.body.id_sensor, 
                     id_pasien : req.body.id_pasien,
-                    dataAccelerometer_X : req.body.dataAccelerometer_X,
-                    dataAccelerometer_Y : req.body.dataAccelerometer_Y,
-                    dataAccelerometer_Z : req.body.dataAccelerometer_Z
+                    dataSuhuReal : req.body.dataSuhuReal,
+                    dataSuhuImag : req.body.dataSuhuiImag         
         });
         // Save and validate
         newData.save()
         .then(newData=> {
             return res.status(200).json({
-            message :'Data Accelerometer Berhasil Disimpan'
+            message :'Rekonstruksi Suhu Berhasil Disimpan'
         })
     })
     .catch (err => {

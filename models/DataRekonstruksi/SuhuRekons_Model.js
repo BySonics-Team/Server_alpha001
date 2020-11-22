@@ -14,34 +14,15 @@ const dataSchema = mongoose.Schema({
         type : String
     },
     //id_pasien, bukan nama, kemungkinana ambil dari _id mongoose
-    //accelerometer
-    dataAccelerometer_X : { 
-        type : [Number]
-    },
-    dataAccelerometer_Y : { 
-        type : [Number]
-    },
-    dataAccelerometer_Z : { 
-        type : [Number]
-    },
     //suhu
-     dataSuhu : { 
+    dataSuhuReal : { 
         type : [Number]
     },
-    //ekg
-    dataEKG : { 
-        type : [Number]
-    },
-    //ppg
-    dataPPG : { 
-        type : [Number]
-    },
-    //emg
-    dataEMG : { 
+    dataSuhuImag : { 
         type : [Number]
     }
 }, {timestamps: true})
 
+onnRekons = mongoose.connection.useDb('DataRekonstruksi')
 
-
-module.exports = mongoose.model('DataAllSensor', dataSchema);
+module.exports = connRekons.model('DataSuhu', dataSchema);

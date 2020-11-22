@@ -20,5 +20,6 @@ const dataSchema = mongoose.Schema({
 }, {timestamps: true})
 
 
+connData = mongoose.connection.useDb('DataSensor')
 
-module.exports = mongoose.model('DataEKG', dataSchema);
+module.exports = connData.model('DataEKG', dataSchema);

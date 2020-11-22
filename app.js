@@ -22,14 +22,14 @@ app.use(express.urlencoded({limit: '50mb', extended: true}));
 
 
 //import routes
-const dataPPGRoute = require ('./routes/dataPPG');
-const dataAcceRoute = require ('./routes/dataAccelerometer')
-const dataEKGRoute = require ('./routes/dataEKG')
-const dataEMGRoute = require ('./routes/dataEMG')
-const dataSuhuRoute = require ('./routes/dataSuhu')
-const dataCameraRoute = require ('./routes/dataImage')
-const dataAllRoute = require ('./routes/dataAllSensor')
-const recordingStatus = require('./routes/RecordingStatus')
+const dataPPGRoute = require ('./routes/DataSensorRoute/dataPPG');
+const dataAcceRoute = require ('./routes/DataSensorRoute/dataAccelerometer')
+const dataEKGRoute = require ('./routes/DataSensorRoute/dataEKG')
+const dataEMGRoute = require ('./routes/DataSensorRoute/dataEMG')
+const dataSuhuRoute = require ('./routes/DataSensorRoute/dataSuhu')
+const dataCameraRoute = require ('./routes/DataSensorRoute/dataImage')
+const dataAllRoute = require ('./routes/DataSensorRoute/dataAllSensor')
+//
 //MIDDLEWARE dari URL HOME/post ke postsRoutes
 app.use('/dataPPG', dataPPGRoute);
 app.use('/dataAccelerometer', dataAcceRoute);
@@ -38,7 +38,29 @@ app.use('/dataEMG', dataEMGRoute);
 app.use('/dataSuhu', dataSuhuRoute);
 app.use('/dataImage', dataCameraRoute);
 app.use('/dataAllSensor', dataAllRoute);
+//route rekonstruk
+//import routes
+const dataPPGRoute = require ('./routes/RekonstruksiRoute/dataPPG');
+const dataAcceRoute = require ('./routes/RekonstruksiRoute/dataAccelerometer')
+const dataEKGRoute = require ('./routes/RekonstruksiRoute/dataEKG')
+const dataEMGRoute = require ('./routes/RekonstruksiRoute/dataEMG')
+const dataSuhuRoute = require ('./routes/RekonstruksiRoute/dataSuhu')
+const dataCameraRoute = require ('./routes/RekonstruksiRoute/dataImage')
+const dataAllRoute = require ('./routes/RekonstruksiRoute/dataAllSensor')
+const recordingStatus = require('./routes/RekonstruksiRoute/RecordingStatus')
+//MIDDLEWARE dari URL HOME/post ke postsRoutes
+app.use('/rekonstruksiPPG', dataPPGRoute);
+app.use('/rekonstruksiAccelerometer', dataAcceRoute);
+app.use('/rekonstruksiEKG', dataEKGRoute);
+app.use('/rekonstruksiEMG', dataEMGRoute);
+app.use('/rekonstruksiSuhu', dataSuhuRoute);
+app.use('/rekonstruksiImage', dataCameraRoute);
+app.use('/rekonstruksiSensor', dataAllRoute);
+//
+
+const recordingStatus = require('./routes/RecordingStatus')
 app.use('/recording', recordingStatus);
+
 //ROUTE: neghubungin ke post dan get dkk
 app.get('/', (req,res) => {
 	res.send('BySonics Home Base Server');

@@ -2,27 +2,27 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require ('mongoose');
 //Deklarasi Model
-const dataEKG = require('../models/EKG_Model');
+const dataAcce = require('../models/DataRekonstruksi/Accelerometer_Model');
 
-//DATA EKG  
+//DATA Accelerometer  
     //get all
     router.get('/All', async (req,res) => {
         try{
-            const dataAll = await dataEKG.find(); //ngasih semua data yang udah kesimpan
+            const dataAll = await dataAcce.find(); //ngasih semua data yang udah kesimpan
             res.json(dataAll);
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET ALL EKG'});
+            res.json({message: 'err GET ALL Accelerometer'});
         }
     });
     //get Last
     router.get('/Lastest', async (req,res) => {
         try{
-            const dataEKG_Last = await dataEKG.find().limit(1).sort({$natural:-1});
-            res.json(dataEKG_Last); 
+            const dataAcce_Last = await dataAcce.find().limit(1).sort({$natural:-1});
+            res.json(dataAcce_Last); 
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET LAST by EKG ID'});
+            res.json({message: 'err GET LAST by Accelerometer ID'});
         }
     });
 
@@ -33,11 +33,11 @@ const dataEKG = require('../models/EKG_Model');
                 id_pasien: req.body.id_pasien
             }
             console.log(req.body.id_pasien);
-            const dataEKG_Last = await dataEKG.find(query).limit(1).sort({$natural:-1});
-            res.json(dataEKG_Last); 
+            const dataAcce_Last = await dataAcce.find(query).limit(1).sort({$natural:-1});
+            res.json(dataAcce_Last);   
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET LAST by EKG ID'});
+            res.json({message: 'err GET LAST by Accelerometer ID'});
         }
     });
 
@@ -48,27 +48,33 @@ const dataEKG = require('../models/EKG_Model');
                 id_pasien: req.body.id_pasien
             }
             console.log(req.body.id_pasien);
-            const dataEKG_Last = await dataEKG.find(query);
-            res.json(dataEKG_Last); 
+            const dataAcce_All = await dataAcce.find(query);
+            console.log(dataAcce_All);
+            res.json(dataAcce_All);   
         }catch(err){
             console.log(err);
-            res.json({message: 'err GET ALL EKG by ID'});
+            res.json({message: 'err GET ALL Accelerometer by ID'});
         }
     });
 
     router.post('/save', async (req,res) => { //pake async kalau save CARA 2
         console.log(req.body) //cek Body
-        const newData = new dataEKG({ //masukin info dari body ke salam model database Post
+        const newData = new dataAcce({ //masukin info dari body ke salam model database Post
                     id_rompi : req.body.id_rompi,
                     id_sensor : req.body.id_sensor, 
                     id_pasien : req.body.id_pasien,
-                    dataEKG : req.body.dataEKG
+                    dataAccelerometer_XReal : req.body.dataAccelerometer_XReal,
+                    dataAccelerometer_YReal : req.body.dataAccelerometer_YReal,
+                    dataAccelerometer_ZReal : req.body.dataAccelerometer_ZReal,
+                    ataAccelerometer_XImag : req.body.dataAccelerometer_XImag,
+                    dataAccelerometer_YImag : req.body.dataAccelerometer_YImag,
+                    dataAccelerometer_ZImag : req.body.dataAccelerometer_ZImag
         });
         // Save and validate
         newData.save()
         .then(newData=> {
             return res.status(200).json({
-            message :'Data EKG Berhasil Disimpan'
+            message :'Rekonstruksi Accelerometer Berhasil Disimpan'
         })
     })
     .catch (err => {

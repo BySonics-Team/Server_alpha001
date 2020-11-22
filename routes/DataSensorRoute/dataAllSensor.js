@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require ('mongoose');
 //Deklarasi Model
-const dataAllSensor = require('../models/DataSensor/AllSensor_Model');
+const dataAllSensor = require('../../models/DataSensor/AllSensor_Model');
 
 //DATA Accelerometer  
     //get all

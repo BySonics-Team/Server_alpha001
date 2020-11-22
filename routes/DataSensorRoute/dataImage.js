@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require ('mongoose');
 //Deklarasi Model
-const dataCamera = require('../models/DataSensorCamera_Model');
+const dataCamera = require('../../models/DataSensor/Camera_Model');
 
 //DATA Camera_Model  
     //get all

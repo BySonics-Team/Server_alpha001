@@ -40,22 +40,21 @@ app.use('/dataImage', dataCameraRoute);
 app.use('/dataAllSensor', dataAllRoute);
 //route rekonstruk
 //import routes
-const dataPPGRoute = require ('./routes/RekonstruksiRoute/dataPPG');
-const dataAcceRoute = require ('./routes/RekonstruksiRoute/dataAccelerometer')
-const dataEKGRoute = require ('./routes/RekonstruksiRoute/dataEKG')
-const dataEMGRoute = require ('./routes/RekonstruksiRoute/dataEMG')
-const dataSuhuRoute = require ('./routes/RekonstruksiRoute/dataSuhu')
-const dataCameraRoute = require ('./routes/RekonstruksiRoute/dataImage')
-const dataAllRoute = require ('./routes/RekonstruksiRoute/dataAllSensor')
-const recordingStatus = require('./routes/RekonstruksiRoute/RecordingStatus')
+const rekonstruksiPPGRoute = require ('./routes/RekonstruksiRoute/dataPPG');
+const rekonstruksiAcceRoute = require ('./routes/RekonstruksiRoute/dataAccelerometer')
+const rekonstruksiEKGRoute = require ('./routes/RekonstruksiRoute/dataEKG')
+const rekonstruksiEMGRoute = require ('./routes/RekonstruksiRoute/dataEMG')
+const rekonstruksiSuhuRoute = require ('./routes/RekonstruksiRoute/dataSuhu')
+const rekonstruksiCameraRoute = require ('./routes/RekonstruksiRoute/dataImage')
+const rekonstruksiAllRoute = require ('./routes/RekonstruksiRoute/dataAllSensor')
 //MIDDLEWARE dari URL HOME/post ke postsRoutes
-app.use('/rekonstruksiPPG', dataPPGRoute);
-app.use('/rekonstruksiAccelerometer', dataAcceRoute);
-app.use('/rekonstruksiEKG', dataEKGRoute);
-app.use('/rekonstruksiEMG', dataEMGRoute);
-app.use('/rekonstruksiSuhu', dataSuhuRoute);
-app.use('/rekonstruksiImage', dataCameraRoute);
-app.use('/rekonstruksiSensor', dataAllRoute);
+app.use('/rekonstruksiPPG', rekonstruksiPPGRoute);
+app.use('/rekonstruksiAccelerometer', rekonstruksiAcceRoute);
+app.use('/rekonstruksiEKG', rekonstruksiEKGRoute);
+app.use('/rekonstruksiEMG', rekonstruksiEMGRoute);
+app.use('/rekonstruksiSuhu', rekonstruksiSuhuRoute);
+app.use('/rekonstruksiImage', rekonstruksiCameraRoute);
+app.use('/rekonstruksiSensor', rekonstruksiAllRoute);
 //
 
 const recordingStatus = require('./routes/RecordingStatus')

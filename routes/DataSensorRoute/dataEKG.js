@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require ('mongoose');
 //Deklarasi Model
-const dataEKG = require('../models/DataSensor/EKG_Model');
+const dataEKG = require('../../models/DataSensor/EKG_Model');
 
 //DATA EKG  
     //get all

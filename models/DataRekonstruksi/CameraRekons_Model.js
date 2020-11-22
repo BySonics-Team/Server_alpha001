@@ -19,6 +19,6 @@ const dataSchema = mongoose.Schema({
     }
 }, {timestamps: true})
 
+connRekons = mongoose.connection.useDb('DataRekonstruksi')
 
-
-module.exports = mongoose.model('DataImage', dataSchema);
+module.exports = connRekons.model('DataImage', dataSchema);

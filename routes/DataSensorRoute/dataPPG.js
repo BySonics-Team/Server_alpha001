@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
+
 const mongoose = require ('mongoose');
 //Deklarasi Model
-const dataPPG = require('../models/DataSensor/PPG_Model');
+const dataPPG = require('../../models/DataSensor/PPG_Model');
 
 //DATA PPG  
     //get all

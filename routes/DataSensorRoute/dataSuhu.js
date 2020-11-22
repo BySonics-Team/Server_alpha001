@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require ('mongoose');
 //Deklarasi Model
-const dataSuhu = require('../models/DataSensor/Suhu_Model');
+const dataSuhu = require('../../models/DataSensor/Suhu_Model');
 
 //DATA Suhu  
     //get all

@@ -23,6 +23,6 @@ const dataSchema = mongoose.Schema({
     }
 }, {timestamps: true})
 
-onnRekons = mongoose.connection.useDb('DataRekonstruksi')
+connRekons = mongoose.connection.useDb('DataRekonstruksi')
 
 module.exports = connRekons.model('DataEKG', dataSchema);

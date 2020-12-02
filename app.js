@@ -55,10 +55,16 @@ app.use('/rekonstruksiEMG', rekonstruksiEMGRoute);
 app.use('/rekonstruksiSuhu', rekonstruksiSuhuRoute);
 app.use('/rekonstruksiImage', rekonstruksiCameraRoute);
 app.use('/rekonstruksiSensor', rekonstruksiAllRoute);
-//
 
+//Recording status
 const recordingStatus = require('./routes/RecordingStatus')
 app.use('/recording', recordingStatus);
+
+//user authentication
+//import routes
+const userRoute = require ('./routes/auth');
+//MIDDLEWARE dari URL HOME/post ke postsRoutes
+app.use('/user', userRoute);
 
 //ROUTE: neghubungin ke post dan get dkk
 app.get('/', (req,res) => {

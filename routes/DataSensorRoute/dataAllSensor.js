@@ -73,7 +73,10 @@ const dataAllSensor = require('../../models/DataSensor/AllSensor_Model');
                     //ppg
                     dataPPG : req.body.dataPPG, 
                     //emg
-                    dataEMG : req.body.dataEMG 
+                    dataEMG : req.body.dataEMG,
+                    //spo2
+                    dataSPO2 : req.body.dataSPO2,
+                    dataBPM :  req.body.dataBPM
         });
         // Save and validate
         newData.save()
